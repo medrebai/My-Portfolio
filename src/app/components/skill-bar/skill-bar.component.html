@@ -1,0 +1,22 @@
+<section class="skills" #skillsSection>
+  <h2>Skills</h2>
+  <div class="skills-bars">
+    <div *ngFor="let skill of mainSkills; let i = index" class="skill-bar">
+      <span class="skill-name">{{ skill.name }}</span>
+      <div class="bar-bg">
+        <div class="bar-fill" [style.width.%]="animatedLevels[i] || 0"></div>
+      </div>
+      <span class="skill-percent">{{ skill.level }}%</span>
+    </div>
+  </div>
+
+  <h3>Other Tools & Technologies</h3>
+  <div class="skills-tags">
+    <span *ngFor="let skill of otherSkills; let i = index"
+          class="skill-tag"
+          [class.animate]="animatedTags"
+          [style.animationDelay]="animatedTags ? (i * 50 + 100) + 'ms' : '0ms'">
+      {{ skill }}
+    </span>
+  </div>
+</section>

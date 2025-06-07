@@ -1,0 +1,19 @@
+.project-grid-section {
+  max-width: 1050px;
+  margin: 3rem auto 0 auto;
+  padding: 2rem 0;
+}
+.project-grid-section h2 {
+  color: #00d09c;
+  text-align: center;
+  margin-bottom: 2rem;
+  letter-spacing: 1.1px;
+}
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.2rem;
+}
+@media (max-width: 700px) {
+  .project-grid { grid-template-columns: 1fr; gap: 1.1rem; }
+}

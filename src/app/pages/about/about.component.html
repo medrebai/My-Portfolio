@@ -1,0 +1,75 @@
+<!-- ===== ABOUT HERO ===== -->
+<section class="about-hero">
+  <div class="about-container">
+    <div class="about-photo-wrapper">
+      <img src="assets/me.png" alt="Mohamed REBAI" class="about-photo" />
+    </div>
+    <div class="about-info">
+      <h1>About Me</h1>
+      <p class="about-intro">
+        <span class="highlight">Hey! I’m Mohamed REBAI</span>
+        <span class="about-role">Software & Data Engineering Student &#64; IIT Sfax</span>
+        <span class="about-location">Sfax, Tunisia 🇹🇳</span>
+      </p>
+      <div class="about-bio">
+        <p>
+          Building data-driven solutions, dashboards, and automating the boring stuff is my jam.<br>
+          I thrive on <span class="highlight-2">turning chaos into clarity</span>—and I love sharing what I learn with others.
+        </p>
+        <p><b>Fun facts:</b></p>
+        <ul>
+          <li>Diamond 1 in League of Legends 💎 (bring it on, Summoner’s Rift)</li>
+          <li>IEEE Tunisia Section Student Rep & serial volunteer 🚀</li>
+          <li>Fuelled by late-night code, memes, and no coffee ☕</li>
+          <li>Always down for a challenge, a hackathon, or deep tech convos</li>
+        </ul>
+        <p>
+          Let’s connect! Whether it’s a collab, mentoring, or gaming duo queue, slide into my
+          <a href="mailto:Medrebai068@gmail.com">inbox</a> or
+          <a href="https://www.linkedin.com/in/mohamed-rebai-9a88aa227/" target="_blank">LinkedIn</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== IEEE TIMELINE ===== -->
+<section class="about-timeline">
+  <h2>IEEE Involvement Timeline</h2>
+  <div class="timeline">
+    <div *ngFor="let item of ieeeTimeline; let i = index" class="timeline-item">
+      <div class="timeline-dot">
+        <span class="emoji">
+          {{ getTimelineIcon(item.icon) }}
+        </span>
+        <div class="timeline-line" *ngIf="i < ieeeTimeline.length - 1"></div>
+      </div>
+      <div class="timeline-content">
+        <span class="timeline-year">{{ item.year }}</span>
+        <div>
+          <span class="timeline-title"><b>{{ item.title }}</b></span>
+          <span class="timeline-chapter">— {{ item.chapter }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FUN FACT SECTION ===== -->
+<section #funfactSection class="funfact-section" [class.visible]="isVisible">
+  <h2 class="funfact-title">Fun Fact</h2>
+  <div class="funfact-main">
+    <img src="assets/diamond.png" alt="Diamond 1 League of Legends" class="funfact-img" />
+    <div class="funfact-details">
+      <div class="funfact-rank">
+        <span class="diamond-flex">
+          <strong>Diamond 1</strong> in League of Legends <span class="lol-emoji">💎</span>
+        </span>
+      </div>
+      <p>
+        Yes, that means I can carry a tech team <i>and</i> a LoL team.<br>
+        <span class="funfact-italic">(Jungle diff every game, don’t &#64; me.)</span>
+      </p>
+    </div>
+  </div>
+</section>

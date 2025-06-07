@@ -1,1 +1,99 @@
 /* You can add global styles to this file, and also import other style files */
+body, html {
+  margin: 0;
+  padding: 0;
+  background: #181818;
+  min-height: 100vh;
+  width: 100vw;
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+app-root {
+  display: block;
+  width: 100vw;
+  min-height: 100vh;
+  background: #181818;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* Example for about-hero section */
+.about-container {
+  display: flex;
+  align-items: center;
+  gap: 3.2rem;
+  /* ...other styles... */
+}
+
+/* Mobile tweaks */
+@media (max-width: 800px) {
+  .about-container {
+    flex-direction: column;
+    gap: 1.7rem;
+    padding: 1.3rem;
+    max-width: 97vw;
+  }
+  .about-info {
+    align-items: center;
+    text-align: center;
+  }
+  .about-photo-wrapper {
+    margin-bottom: 1.3rem;
+  }
+}
+
+/* About photo resize on smaller screens */
+@media (max-width: 600px) {
+  .about-photo {
+    width: 105px;
+    height: 105px;
+  }
+  .about-info h1 {
+    font-size: 1.25rem;
+  }
+}
+
+/* Fun fact image and text adjustments */
+@media (max-width: 600px) {
+  .funfact-section {
+    padding: 1.2rem 0.3rem;
+    max-width: 98vw;
+  }
+  .funfact-img {
+    width: 80px;
+    height: 80px;
+  }
+  .funfact-title {
+    font-size: 1.1rem;
+  }
+}
+.timeline {
+  margin: 2.5rem auto 0 auto;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+@media (max-width: 600px) {
+  .timeline {
+    gap: 1.2rem;
+    padding: 0 0.1rem;
+  }
+  .timeline-dot .emoji {
+    font-size: 1.2em;
+  }
+  .timeline-content {
+    font-size: 0.97em;
+  }
+}
+@media (max-width: 800px) {
+  /* Stack about-photo and about-info vertically */
+}
+
+@media (max-width: 600px) {
+  /* Make images, headings, containers even smaller */
+}

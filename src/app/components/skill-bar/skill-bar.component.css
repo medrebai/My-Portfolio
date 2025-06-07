@@ -1,0 +1,138 @@
+.skills {
+  background: #181818;
+  color: #fff;
+  padding: 2.5rem 1.5rem;
+  border-radius: 14px;
+  max-width: 700px;
+  margin: 3rem auto;
+  box-shadow: 0 4px 32px #00d09c11;
+}
+
+.skills h2, .skills h3 {
+  color: #00d09c;
+  margin-bottom: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-align: center;
+}
+
+.skills-bars {
+  margin-bottom: 2rem;
+}
+
+.skill-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.1rem;
+}
+
+.skill-name {
+  flex: 1;
+  font-size: 1.09rem;
+  font-weight: 500;
+  color: #8ba3be;
+}
+
+.bar-bg {
+  flex: 3;
+  background: #262d36;
+  border-radius: 7px;
+  overflow: hidden;
+  height: 13px;
+  margin: 0 1.2rem;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 7px;
+  background: linear-gradient(90deg, #00d09c 0%, #00b3b3 100%);
+  transition: width 1s cubic-bezier(0.36,2,0.31,1.01);
+}
+
+.skill-percent {
+  width: 40px;
+  font-size: 1rem;
+  text-align: right;
+  color: #00d09c;
+}
+
+.skills-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  justify-content: center;
+}
+
+.skill-tag {
+  background: #222f3e;
+  color: #00d09c;
+  padding: 0.42em 1.12em;
+  border-radius: 24px;
+  font-size: 1rem;
+  font-weight: 500;
+  box-shadow: 0 1px 7px #00d09c11;
+  margin-bottom: 0.5em;
+  transition: background 0.18s, color 0.18s;
+}
+
+.skill-tag:hover {
+  background: #00d09c;
+  color: #181818;
+}
+.skill-tag {
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  /* Only animate when .animate class is present */
+}
+
+.skill-tag.animate {
+  animation: tag-in 0.6s cubic-bezier(0.2, 1.2, 0.5, 1) forwards;
+}
+
+@keyframes tag-in {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.bar-fill {
+  height: 100%;
+  border-radius: 7px;
+  background: linear-gradient(90deg, #00d09c 10%, #0ccfff 90%);
+  box-shadow: 0 2px 18px #00d09c44, 0 1.5px 5px #11192788;
+  transition: width 1.25s cubic-bezier(.19,1,.22,1);
+  will-change: width;
+}
+.skill-tag {
+  background: #222f3e;
+  color: #00d09c;
+  padding: 0.45em 1.2em;
+  border-radius: 26px;
+  font-size: 1rem;
+  font-weight: 500;
+  box-shadow: 0 3px 20px #00d09c22, 0 1px 8px #00b8a911;
+  margin-bottom: 0.5em;
+  cursor: pointer;
+  transition: background 0.22s, color 0.22s, box-shadow 0.16s, transform 0.18s;
+  filter: blur(0.1px);
+}
+.skill-tag:hover {
+  background: #00d09c;
+  color: #181818;
+  transform: scale(1.07) rotate(-3deg);
+  box-shadow: 0 2px 28px #00d09c55;
+}
+.skills h2, .skills h3 {
+  color: #00d09c;
+  margin-bottom: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-align: center;
+  opacity: 0;
+  animation: fade-down 0.7s cubic-bezier(0.18,1.24,0.35,1) 0.1s forwards;
+}
+@keyframes fade-down {
+  from { opacity: 0; transform: translateY(-24px);}
+  to { opacity: 1; transform: none;}
+}
+

@@ -1,0 +1,36 @@
+<section class="home-hero">
+  <div class="home-text">
+    <h1>Hey, I'm <span class="highlight">Mohamed REBAI</span></h1>
+    <h2>Software & Data Engineering Student</h2>
+    <p>
+      2nd Year at IIT Sfax.<br>
+      Passionate about building data-driven solutions & business intelligence.<br>
+      <b>IEEE Volunteer since 2020</b>
+    </p>
+    <div class="home-links">
+      <a href="https://www.linkedin.com/in/mohamed-rebai-9a88aa227/" target="_blank">LinkedIn</a>
+      <a href="https://github.com/medrebai" target="_blank">GitHub</a>
+      <a href="mailto:Medrebai068@gmail.com">Contact Me</a>
+    </div>
+  </div>
+  <div class="home-photo">
+    <img src="assets/me.png" alt="Mohamed REBAI" />
+  </div>
+</section>
+<app-skill-bar></app-skill-bar>
+<section class="internship-timeline">
+  <h2>Internship Timeline</h2>
+<div *ngFor="let item of internships; let i = index" 
+     #timelineEntry
+     class="timeline-entry"
+     [class.visible]="visibleEntries[i]">
+  <div class="timeline-dot"></div>
+  <div class="timeline-content">
+    <span class="timeline-date">{{ item.date }}</span>
+    <h3 class="timeline-title">{{ item.title }} <span class="timeline-company">&#64; {{ item.company }}</span></h3>
+    <p class="timeline-desc">{{ item.desc }}</p>
+    <div class="timeline-tags">
+      <span *ngFor="let tag of item.keywords" class="timeline-tag">{{ tag }}</span>
+    </div>
+  </div>
+</div>
