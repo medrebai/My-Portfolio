@@ -8,25 +8,32 @@ import { AfterViewInit, Component, ElementRef, QueryList, ViewChildren } from '@
 export class ProjectsComponent implements AfterViewInit {
   projects = [
     {
-      title: "Business Intelligence Solution",
-      desc: "ETL with Talend, dashboards with Power BI, and reporting via Jaspersoft for a retail enterprise.",
-      tech: ["Talend", "Power BI", "Jaspersoft", "PostgreSQL"],
-      img: "assets/bi-dashboard.png",
+      title: "Business Intelligence Solution For Retail and Ecommerce Enterprise",
+      desc: "Sales data management to analyze commercial performance, inventory tracking to optimize product availability, and e-commerce interaction analysis to improve user experience.",
+      tech: ["Talend", "Power BI", "PostgreSQL"],
+      images: [
+        "assets/PFA 2.png",
+        "assets/PFA 1.png",
+        "assets/PFA 3.png",
+        "assets/PFA 4.png"
+      ],
       demo: "",
       code: "",
-      github: "https://github.com/yourrepo",
+      github: "",
       year: "2025"
     },
     {
-      title: "Artar Mobile App",
-      desc: "Developed and deployed an AR/VR art gallery app with Flutter and Firebase.",
-      tech: ["Flutter", "Firebase", "Unity", "AR/VR"],
-      img: "assets/artar-app.png",
-      demo: "http://artanit.org/",
-      code: "",
-            github: "https://github.com/yourrepo",
+      title: "Business Intelligence Solution For a Fitness Center",
+      desc: "Implementing a comprehensive decision-making system to optimize subscription management, analyze sports activities, and track financial performance.",
+      tech: ["Power BI", "SSIS", "SSMS", "SSAS", "SQL Server"],
+    images: [
+        "assets/Power BI Project.png",
+        "assets/Power BI Project 2 .png",
 
-      year: "2023"
+      ],
+      code: "",
+      github: "",
+      year: "2025"
     },
     {
       title: "ERP Module Integration",

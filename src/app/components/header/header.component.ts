@@ -1,4 +1,6 @@
 import { Component, HostListener } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -7,18 +9,39 @@ import { Component, HostListener } from '@angular/core';
 })
 export class HeaderComponent {
   isScrolled = false;
-  menuOpen = false;
+  isMobileMenuOpen = false;
+  activeRoute = '';
+
+  navLinks = [
+    { path: '/home', label: 'Home', icon: 'home' },
+    { path: '/about', label: 'About', icon: 'person' },
+    { path: '/projects', label: 'Projects', icon: 'work' },
+    { path: '/contact', label: 'Contact', icon: 'mail' }
+  ];
+
+  constructor(private router: Router) {
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: any) => {
+      this.activeRoute = event.url;
+      this.isMobileMenuOpen = false;
+    });
+  }
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    this.isScrolled = window.scrollY > 20;
+    this.isScrolled = window.scrollY > 50;
   }
 
-  toggleMenu() {
-    this.menuOpen = !this.menuOpen;
+  toggleMobileMenu() {
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
   }
 
-  closeMenu() {
-    this.menuOpen = false;
+  isActive(path: string): boolean {
+    return this.activeRoute === path;
+  }
+
+  downloadCV() {
+    window.open('assets/cv.pdf', '_blank');
   }
 }

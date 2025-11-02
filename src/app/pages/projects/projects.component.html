@@ -1,8 +1,10 @@
 <section class="project-grid-section">
-  <h2>Projects</h2>
-  <div class="project-grid">
-    <div *ngFor="let p of projects; let i = index" #projectCardRef>
-      <app-project-card [project]="p" [visible]="visibleCards[i]"></app-project-card>
+  <div class="container">
+    <h2 class="section-title">Projects</h2>
+    <div class="project-grid">
+      <div *ngFor="let p of projects; let i = index" #projectCardRef>
+        <app-project-card [project]="p" [visible]="visibleCards[i]"></app-project-card>
+      </div>
     </div>
   </div>
-</section>
+ </section>

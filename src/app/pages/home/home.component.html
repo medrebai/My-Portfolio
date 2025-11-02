@@ -1,36 +1,65 @@
 <section class="home-hero">
-  <div class="home-text">
-    <h1>Hey, I'm <span class="highlight">Mohamed REBAI</span></h1>
-    <h2>Software & Data Engineering Student</h2>
-    <p>
-      2nd Year at IIT Sfax.<br>
-      Passionate about building data-driven solutions & business intelligence.<br>
-      <b>IEEE Volunteer since 2020</b>
-    </p>
-    <div class="home-links">
-      <a href="https://www.linkedin.com/in/mohamed-rebai-9a88aa227/" target="_blank">LinkedIn</a>
-      <a href="https://github.com/medrebai" target="_blank">GitHub</a>
-      <a href="mailto:Medrebai068@gmail.com">Contact Me</a>
+  <div class="container">
+    <div class="home-text">
+      <h1>Hey, I'm <span class="highlight">Mohamed REBAI</span></h1>
+      <h2>Software & Data Engineering Student</h2>
+      <p>
+3rd Year Software Engineering and Data Engineering student at the International Institute of Technology with a strong
+interest in data-driven solutions, currently looking for end of studies internship. IEEE Volunteer Since 2020 with strong
+community involvement.
+      </p>
+      <div class="home-links">
+        <a href="https://www.linkedin.com/in/mohamed-rebai-9a88aa227/" target="_blank">LinkedIn</a>
+        <a href="https://github.com/medrebai" target="_blank">GitHub</a>
+        <a href="mailto:Medrebai068@gmail.com">Contact Me</a>
+      </div>
     </div>
-  </div>
-  <div class="home-photo">
-    <img src="assets/me.png" alt="Mohamed REBAI" />
+    <div class="home-photo">
+      <img src="assets/me.png" alt="Mohamed REBAI" />
+    </div>
   </div>
 </section>
-<app-skill-bar></app-skill-bar>
-<section class="internship-timeline">
-  <h2>Internship Timeline</h2>
-<div *ngFor="let item of internships; let i = index" 
-     #timelineEntry
-     class="timeline-entry"
-     [class.visible]="visibleEntries[i]">
-  <div class="timeline-dot"></div>
-  <div class="timeline-content">
-    <span class="timeline-date">{{ item.date }}</span>
-    <h3 class="timeline-title">{{ item.title }} <span class="timeline-company">&#64; {{ item.company }}</span></h3>
-    <p class="timeline-desc">{{ item.desc }}</p>
-    <div class="timeline-tags">
-      <span *ngFor="let tag of item.keywords" class="timeline-tag">{{ tag }}</span>
+
+
+<div class="container">
+  <app-skill-bar></app-skill-bar>
+</div>
+<section class="experience-section">
+  <div class="container">
+    <h2 class="section-title">Experience</h2>
+    <div class="experience-list">
+      <article *ngFor="let exp of internships; let i = index" #expRef class="exp-item" [class.visible]="visibleEntries[i]">
+        <header class="exp-header">
+          <h3 class="exp-title"><span class="exp-role">{{ exp.title }}</span> <span class="at">@ {{ exp.company }}</span></h3>
+          <div class="exp-meta">
+            <span class="exp-location" *ngIf="exp.location">{{ exp.location }}</span>
+            <span class="exp-dot" aria-hidden="true" *ngIf="exp.location">•</span>
+            <span class="exp-date">{{ exp.date }}</span>
+          </div>
+        </header>
+        <ul class="exp-bullets" *ngIf="exp.bullets?.length">
+          <li *ngFor="let b of exp.bullets">{{ b }}</li>
+        </ul>
+        <div class="exp-keywords" *ngIf="exp.keywords?.length">
+          <span class="label">Keywords:</span>
+          <span *ngFor="let k of exp.keywords" class="chip">{{ k }}</span>
+        </div>
+      </article>
     </div>
   </div>
-</div>
+  <br>
+  <section>
+  <div class="container">
+    <h2 class="section-title">Education</h2>
+    <div class="education-list">
+      <article *ngFor="let edu of education" class="edu-item">
+        <h3 class="edu-degree">{{ edu.degree }}</h3>
+        <div class="edu-meta">
+          <span class="edu-school" *ngIf="edu.school">{{ edu.school }}</span>
+          <span class="edu-dot" aria-hidden="true" *ngIf="edu.school && edu.date">•</span>
+          <span class="edu-date" *ngIf="edu.date">{{ edu.date }}</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

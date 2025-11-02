@@ -10,6 +10,19 @@
   box-sizing: border-box;
 }
 
+/* New: make inner container manage the two-column layout */
+.home-hero > .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3vw;
+}
+
+/* Optional: place the photo on the left by adding .photo-left to the section */
+.home-hero.photo-left > .container {
+  flex-direction: row-reverse;
+}
+
 .home-text {
   flex: 2;
   max-width: 540px;
@@ -83,12 +96,11 @@
 }
 
 @media (max-width: 900px) {
-  .home-hero {
+  .home-hero { min-height: 100vh; padding: 0 1rem; }
+  .home-hero > .container {
     flex-direction: column-reverse;
     text-align: center;
-    min-height: 100vh;
     gap: 1.5rem;
-    padding: 0 1rem;
   }
   .home-text {
     max-width: 100vw;
@@ -214,3 +226,34 @@ body, html {
   opacity: 1;
   transform: none;
 }
+
+/* ===== Experience (new) ===== */
+.experience-section { padding: 2.5rem 0 0 0; }
+.experience-list { display: grid; gap: 1rem; }
+.exp-item {
+  opacity: 0;
+  transform: translateY(30px) scale(0.98);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 1rem 1.2rem;
+  transition: opacity .6s cubic-bezier(.22,1,.36,1), transform .6s cubic-bezier(.22,1,.36,1);
+}
+.exp-item.visible { opacity: 1; transform: none; }
+.exp-title { margin: 0; color: var(--text); font-size: 1.1rem; }
+.exp-role { color: var(--text); font-weight: 700; }
+.exp-title .at { color: var(--primary); font-weight: 700; }
+.exp-meta { color: var(--text-muted); font-size: .95rem; margin-top: .2rem; display: flex; align-items: center; gap: .5rem; }
+.exp-bullets { margin: .6rem 0 .4rem 1.2rem; }
+.exp-bullets li { margin-bottom: .25rem; }
+.exp-keywords { display: flex; flex-wrap: wrap; gap: .4rem; align-items: center; }
+.exp-keywords .label { color: var(--text-muted); margin-right: .2rem; }
+.exp-keywords .chip { background: rgba(0, 208, 156, 0.15); color: var(--primary); border-radius: 999px; padding: .15rem .6rem; font-weight: 600; font-size: .9rem; }
+
+/* ===== Education (simple list) ===== */
+.education-list { display: grid; gap: .75rem; }
+.edu-item { border-left: 3px solid var(--primary); padding: .5rem 1rem; border-radius: 8px; background: transparent; }
+.edu-degree { margin: 0; color: var(--text); font-weight: 700; font-size: 1.05rem; }
+.edu-meta { color: var(--text-muted); font-size: .95rem; margin-top: .15rem; display: flex; align-items: center; gap: .5rem; }
+/* intentionally scoped meta parts; no extra rules needed */

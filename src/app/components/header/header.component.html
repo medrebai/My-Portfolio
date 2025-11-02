@@ -1,25 +1,53 @@
-<nav class="navbar">
-  <div class="navbar-left">
-    <a href="/" class="navbar-logo">Mohamed REBAI</a>
-  </div>
-  
-  <!-- Burger menu icon (only shown on mobile) -->
-  <div class="burger" (click)="toggleMenu()" [class.open]="menuOpen">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-  
-  <!-- Navbar links -->
-  <ul class="navbar-links" [class.open]="menuOpen">
-    <li><a routerLink="/" (click)="closeMenu()">Home</a></li>
-    <li><a routerLink="/about" (click)="closeMenu()">About</a></li>
-    <li><a routerLink="/projects" (click)="closeMenu()">Projects</a></li>
-    <li><a routerLink="/contact" (click)="closeMenu()">Contact</a></li>
-    <li>
-      <a href="assets/Mohamed_REBAI_CV.pdf.pdf" download="Mohamed_REBAI_CV.pdf" class="navbar-cv-btn" (click)="closeMenu()">
-        Download CV
+<mat-toolbar class="navbar" [class.scrolled]="isScrolled">
+  <div class="navbar-container">
+    <!-- Logo -->
+    <a routerLink="/home" class="navbar-logo">
+      <mat-icon class="logo-icon">terminal</mat-icon>
+      <span class="logo-text">Portfolio</span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="navbar-links desktop-nav">
+      <a 
+        *ngFor="let link of navLinks" 
+        mat-button 
+        [routerLink]="link.path"
+        [class.active]="isActive(link.path)"
+        class="nav-link">
+        <mat-icon class="nav-icon">{{link.icon}}</mat-icon>
+        <span>{{link.label}}</span>
       </a>
-    </li>
-  </ul>
-</nav>
+      
+      <button mat-raised-button class="cv-btn" (click)="downloadCV()">
+        <mat-icon>download</mat-icon>
+        Download CV
+      </button>
+    </nav>
+
+    <!-- Mobile Menu Toggle -->
+    <button mat-icon-button class="mobile-menu-btn" (click)="toggleMobileMenu()">
+      <mat-icon>{{isMobileMenuOpen ? 'close' : 'menu'}}</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+
+<!-- Mobile Navigation Overlay -->
+<div class="mobile-nav-overlay" [class.open]="isMobileMenuOpen" (click)="toggleMobileMenu()">
+  <nav class="mobile-nav" [class.open]="isMobileMenuOpen" (click)="$event.stopPropagation()">
+    <a 
+      *ngFor="let link of navLinks; let i = index" 
+      mat-button 
+      [routerLink]="link.path"
+      [class.active]="isActive(link.path)"
+      class="mobile-nav-link"
+      [style.animation-delay]="(i * 0.1) + 's'">
+      <mat-icon>{{link.icon}}</mat-icon>
+      <span>{{link.label}}</span>
+    </a>
+    
+    <button mat-raised-button class="cv-btn mobile" (click)="downloadCV()">
+      <mat-icon>download</mat-icon>
+      Download CV
+    </button>
+  </nav>
+</div>

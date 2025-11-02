@@ -1,6 +1,6 @@
 <!-- ===== ABOUT HERO ===== -->
 <section class="about-hero">
-  <div class="about-container">
+  <div class="about-container container">
     <div class="about-photo-wrapper">
       <img src="assets/me.png" alt="Mohamed REBAI" class="about-photo" />
     </div>
@@ -35,8 +35,9 @@
 
 <!-- ===== IEEE TIMELINE ===== -->
 <section class="about-timeline">
-  <h2>IEEE Involvement Timeline</h2>
-  <div class="timeline">
+  <div class="container">
+  <h2 class="section-title">IEEE Involvement Timeline</h2>
+    <div class="timeline">
     <div *ngFor="let item of ieeeTimeline; let i = index" class="timeline-item">
       <div class="timeline-dot">
         <span class="emoji">
@@ -52,13 +53,15 @@
         </div>
       </div>
     </div>
+    </div>
   </div>
 </section>
 
 <!-- ===== FUN FACT SECTION ===== -->
 <section #funfactSection class="funfact-section" [class.visible]="isVisible">
-  <h2 class="funfact-title">Fun Fact</h2>
-  <div class="funfact-main">
+  <div class="container">
+  <h2 class="funfact-title section-title">Fun Fact</h2>
+    <div class="funfact-main">
     <img src="assets/diamond.png" alt="Diamond 1 League of Legends" class="funfact-img" />
     <div class="funfact-details">
       <div class="funfact-rank">
@@ -70,6 +73,7 @@
         Yes, that means I can carry a tech team <i>and</i> a LoL team.<br>
         <span class="funfact-italic">(Jungle diff every game, don’t &#64; me.)</span>
       </p>
+    </div>
     </div>
   </div>
 </section>

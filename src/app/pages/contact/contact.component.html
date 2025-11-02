@@ -1,6 +1,7 @@
 <section class="contact-section">
-  <h2>Contact Me</h2>
-  <form class="contact-form" #contactForm="ngForm" (submit)="onSubmit($event)">
+  <div class="container">
+  <h2 class="section-title">Contact Me</h2>
+    <form class="contact-form" #contactForm="ngForm" (submit)="onSubmit($event)">
     <div class="form-row">
       <div class="form-group">
         <input type="text"
@@ -41,9 +42,9 @@
       <span *ngIf="!loading">Send Message 🚀</span>
       <span *ngIf="loading" class="spinner"></span>
     </button>
-    <p class="success-msg" *ngIf="showSuccess">Thank you! I’ll get back to you soon 👋</p>
-  </form>
-  <div class="contact-socials">
+      <p class="success-msg" *ngIf="showSuccess">Thank you! I’ll get back to you soon 👋</p>
+    </form>
+    <div class="contact-socials">
     <a href="mailto:Medrebai068@gmail.com" target="_blank" aria-label="Email">
       <svg width="27" height="27" fill="white" viewBox="0 0 24 24"><path d="M12 13.065l-8-5.565v12h16v-12zm8-9.065h-16c-1.104 0-2 .896-2 2v.01l10 6.99 10-6.99v-.01c0-1.104-.896-2-2-2z"/></svg>
     </a>
@@ -53,5 +54,6 @@
     <a href="https://www.linkedin.com/in/mohamed-rebai-9a88aa227/" target="_blank" aria-label="LinkedIn">
       <svg width="27" height="27" fill="white" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11.5 20h-3v-11h3v11zm-1.5-12.25a1.75 1.75 0 1 1 0-3.5 1.75 1.75 0 0 1 0 3.5zm15 12.25h-3v-5.5c0-1.32-.03-3.03-1.85-3.03-1.86 0-2.15 1.45-2.15 2.93v5.6h-3v-11h2.89v1.5h.04c.4-.75 1.38-1.54 2.84-1.54 3.03 0 3.59 1.99 3.59 4.57v6.47z"/></svg>
     </a>
+    </div>
   </div>
 </section>

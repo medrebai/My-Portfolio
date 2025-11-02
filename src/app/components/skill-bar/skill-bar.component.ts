@@ -1,45 +1,119 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+interface Skill {
+  name: string;
+  // Skill Icons ID (https://skillicons.dev) — leave empty if not available
+  iconId?: string;
+  // Simple Icons slug (https://simpleicons.org) as a fallback
+  slug?: string;
+  // DevIcons class (https://devicon.dev) e.g., 'devicon-odoo-plain colored'
+  deviconClass?: string;
+}
+
+interface SkillCategory {
+  title: string;
+  skills: Skill[];
+}
 
 @Component({
   selector: 'app-skill-bar',
   templateUrl: './skill-bar.component.html',
   styleUrls: ['./skill-bar.component.css']
 })
-export class SkillsComponent implements AfterViewInit {
-  mainSkills = [
-    { name: 'Python', level: 90 },
-    { name: 'Java', level: 85 },
-    { name: 'Angular', level: 80 },
-    { name: 'Flutter', level: 78 },
-    { name: 'TypeScript', level: 75 },
-    { name: 'Power BI', level: 72 },
-    { name: 'Talend', level: 70 },
-    { name: 'PostgreSQL', level: 70 }
+export class SkillBarComponent implements OnInit {
+  categories: SkillCategory[] = [
+    {
+      title: 'Programming Languages',
+      skills: [
+        { name: 'Python', iconId: 'py', slug: 'python' },
+        { name: 'Java', iconId: 'java', slug: 'java' },
+        { name: 'C', iconId: 'c', slug: 'c' },
+        { name: 'C++', iconId: 'cpp', slug: 'cplusplus' },
+        { name: 'Dart', iconId: 'dart', slug: 'dart' },
+        { name: 'TypeScript', iconId: 'ts', slug: 'typescript' }
+      ]
+    },
+    {
+      title: 'Frameworks',
+      skills: [
+        { name: 'Flutter', iconId: 'flutter', slug: 'flutter' },
+        { name: 'Angular', iconId: 'angular', slug: 'angular' },
+        { name: 'Laravel', iconId: 'laravel', slug: 'laravel' },
+        { name: 'Springboot', iconId: 'spring', slug: 'springboot' },
+        { name: 'Odoo', slug: 'odoo', deviconClass: 'devicon-odoo-plain colored' }
+      ]
+    },
+    {
+      title: 'Data & Cloud',
+      skills: [
+        { name: 'Talend', slug: 'talend' },
+        { name: 'Power BI', slug: 'powerbi' },
+        { name: 'PostgreSQL', iconId: 'postgres', slug: 'postgresql' },
+        { name: 'AWS', iconId: 'aws', slug: 'amazonaws' },
+        { name: 'MySQL', iconId: 'mysql', slug: 'mysql' }
+      ]
+    },
+    {
+      title: 'AI & Data Science',
+      skills: [
+        { name: 'Pandas', slug: 'pandas' },
+        { name: 'Matplotlib', slug: 'matplotlib' },
+        { name: 'scikit-learn', slug: 'scikitlearn' },
+        { name: 'TensorFlow', iconId: 'tensorflow', slug: 'tensorflow' },
+        { name: 'Deep Learning' },
+        { name: 'Machine Learning' }
+      ]
+    },
+    {
+      title: 'Tools',
+      skills: [
+        { name: 'Jira', slug: 'jira', deviconClass: 'devicon-jira-plain colored' },
+        { name: 'Confluence', slug: 'confluence', deviconClass: 'devicon-confluence-plain colored' },
+        { name: 'Git', iconId: 'git', slug: 'git' },
+        { name: 'GitHub', iconId: 'github', slug: 'github' },
+        { name: 'GitLab', iconId: 'gitlab', slug: 'gitlab' },
+        { name: 'Scrum', slug: 'scrumalliance' },
+        { name: 'Notion', slug: 'notion' },
+        { name: 'Trello', slug: 'trello', deviconClass: 'devicon-trello-plain colored' },
+        { name: 'Datadog', slug: 'datadog', deviconClass: 'devicon-datadog-plain colored' },
+        { name: 'Docker', iconId: 'docker', slug: 'docker' }
+      ]
+    },
+    {
+      title: 'Languages',
+      skills: [
+        { name: 'Arabic (Native)' },
+        { name: 'French (Advanced)' },
+        { name: 'English (Advanced)' }
+      ]
+    }
   ];
 
-  otherSkills = [
-    'C/C++', 'Dart', 'React', 'Laravel', 'Bootstrap', 'Odoo', 'GCP', 'AWS',
-    'Excel', 'MySQL', 'Pandas', 'matplotlib', 'scikit-learn', 'TensorFlow',
-    'Deep Learning', 'Machine Learning', 'Jira', 'Git', 'Notion', 'Trello'
-  ];
+  ngOnInit(): void {}
 
-  animatedLevels: number[] = [];
-  animatedTags = false;
+  getSkillIconsUrl(iconId: string) {
+    return `https://skillicons.dev/icons?i=${iconId}&theme=dark`;
+  }
 
-  @ViewChild('skillsSection') skillsSection!: ElementRef;
+  getSimpleIconUrl(slug?: string) {
+    return slug ? `https://cdn.simpleicons.org/${slug}` : '';
+  }
 
-  ngAfterViewInit() {
-    const observer = new IntersectionObserver(
-      entries => {
-        if (entries[0].isIntersecting) {
-          // Animate bars and tags
-          this.animatedLevels = this.mainSkills.map(skill => skill.level);
-          this.animatedTags = true;
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.3 } // Trigger when 30% of the section is visible
-    );
-    observer.observe(this.skillsSection.nativeElement);
+  // Swap to Simple Icons when Skill Icons is missing
+  onIconError(ev: Event, slug?: string) {
+    const img = ev.target as HTMLImageElement | null;
+    if (!img) return;
+
+    const alreadyFallback = img.dataset?.['fallbackDone'] === '1';
+    if (alreadyFallback) return;
+
+    const fallback = this.getSimpleIconUrl(slug);
+    if (fallback) {
+      img.dataset['fallbackDone'] = '1';
+      img.src = fallback;
+    } else {
+      // No fallback available: hide the image box
+      img.style.display = 'none';
+    }
   }
 }

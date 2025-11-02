@@ -1,6 +1,25 @@
 <div class="project-card" [class.visible]="visible">
-  <div class="project-img" *ngIf="project.img">
-    <img [src]="project.img" [alt]="project.title" />
+  <div class="project-img" *ngIf="currentImage" (click)="openModal($event)">
+    <img [src]="currentImage" [alt]="project.title" />
+    
+    <!-- Navigation arrows (only show if multiple images) -->
+    <button *ngIf="hasMultipleImages" class="carousel-btn prev" (click)="prevImage($event)" aria-label="Previous image">
+      ‹
+    </button>
+    <button *ngIf="hasMultipleImages" class="carousel-btn next" (click)="nextImage($event)" aria-label="Next image">
+      ›
+    </button>
+    
+    <!-- Dots indicator -->
+    <div *ngIf="hasMultipleImages" class="carousel-dots">
+      <span 
+        *ngFor="let img of project.images; let i = index" 
+        class="dot" 
+        [class.active]="i === currentImageIndex"
+        (click)="goToImage(i, $event)"
+        [attr.aria-label]="'Go to image ' + (i + 1)">
+      </span>
+    </div>
   </div>
   <div class="project-info">
     <h3>{{ project.title }}</h3>
@@ -18,5 +37,40 @@
   </a>
 </div>
 
+  </div>
+</div>
+
+<!-- Modal/Lightbox -->
+<div class="modal-overlay" *ngIf="isModalOpen" (click)="closeModal($event)">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <button class="modal-close" (click)="closeModal($event)" aria-label="Close modal">✕</button>
+    
+    <div class="modal-image-container">
+      <img [src]="modalCurrentImage" [alt]="project.title" />
+      
+      <!-- Modal navigation arrows -->
+      <button *ngIf="hasMultipleImages" class="modal-carousel-btn prev" (click)="prevModalImage($event)" aria-label="Previous image">
+        ‹
+      </button>
+      <button *ngIf="hasMultipleImages" class="modal-carousel-btn next" (click)="nextModalImage($event)" aria-label="Next image">
+        ›
+      </button>
+      
+      <!-- Modal dots indicator -->
+      <div *ngIf="hasMultipleImages" class="modal-carousel-dots">
+        <span 
+          *ngFor="let img of project.images; let i = index" 
+          class="modal-dot" 
+          [class.active]="i === modalImageIndex"
+          (click)="goToModalImage(i, $event)"
+          [attr.aria-label]="'Go to image ' + (i + 1)">
+        </span>
+      </div>
+    </div>
+    
+    <div class="modal-info">
+      <h3>{{ project.title }}</h3>
+      <p>{{ project.desc }}</p>
+    </div>
   </div>
 </div>

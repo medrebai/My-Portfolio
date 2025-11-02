@@ -1,22 +1,48 @@
 <section class="skills" #skillsSection>
-  <h2>Skills</h2>
-  <div class="skills-bars">
-    <div *ngFor="let skill of mainSkills; let i = index" class="skill-bar">
-      <span class="skill-name">{{ skill.name }}</span>
-      <div class="bar-bg">
-        <div class="bar-fill" [style.width.%]="animatedLevels[i] || 0"></div>
-      </div>
-      <span class="skill-percent">{{ skill.level }}%</span>
+  <div class="skills-container">
+    <div class="skills-header">
+      <h2 class="section-title">Technical Skills</h2>
+      <p class="section-subtitle">Based on my CV</p>
     </div>
-  </div>
 
-  <h3>Other Tools & Technologies</h3>
-  <div class="skills-tags">
-    <span *ngFor="let skill of otherSkills; let i = index"
-          class="skill-tag"
-          [class.animate]="animatedTags"
-          [style.animationDelay]="animatedTags ? (i * 50 + 100) + 'ms' : '0ms'">
-      {{ skill }}
-    </span>
+    <div class="skills-grid">
+      <div *ngFor="let cat of categories" class="skill-category">
+        <h3 class="category-title">
+          <span class="title-line"></span>
+          {{ cat.title }}
+          <span class="title-line"></span>
+        </h3>
+
+        <div class="skills-row">
+          <div *ngFor="let s of cat.skills" class="skill-item" [class.no-icon]="!s.iconId && !s.slug && !s.deviconClass">
+            <div class="skill-icon-wrapper" *ngIf="s.iconId || s.deviconClass || s.slug">
+              <ng-container *ngIf="s.iconId; else tryDevicon">
+                <img
+                  class="skill-icon"
+                  [src]="getSkillIconsUrl(s.iconId!)"
+                  [alt]="s.name"
+                  loading="lazy"
+                  (error)="onIconError($event, s.slug)"
+                />
+              </ng-container>
+              <ng-template #tryDevicon>
+                <ng-container *ngIf="s.deviconClass; else trySimpleIcon">
+                  <i class="skill-devicon" [ngClass]="s.deviconClass" aria-hidden="true"></i>
+                </ng-container>
+              </ng-template>
+              <ng-template #trySimpleIcon>
+                <img
+                  class="skill-icon"
+                  [src]="getSimpleIconUrl(s.slug)"
+                  [alt]="s.name"
+                  loading="lazy"
+                />
+              </ng-template>
+            </div>
+            <span class="skill-name">{{ s.name }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
